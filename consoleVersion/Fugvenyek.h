@@ -76,5 +76,4 @@ public:
 	// ar tömböt rakja össze
 	void pontok(int i);
 
-
 };

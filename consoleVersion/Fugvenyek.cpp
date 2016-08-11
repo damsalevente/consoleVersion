@@ -81,6 +81,16 @@ void Duplex::print() const
 	cout << this->cb1 << endl;
 	cout << this->ta1 << endl;
 	cout << this->tb1 << endl;
+	cout << "--------------------------------" << endl;
+	cout << "\t\tSr tomb kiirasa:\t\t" << endl;
+	for (int i = 0; i < 73; i++)
+	{
+		for (int j = 0; j < 8; j++)
+		{
+			cout << "\t" << sr[i][j] << "\t";
+		}
+		cout << endl;
+	}
 }
 
 void Duplex::maxLoket()
@@ -109,34 +119,34 @@ void Duplex::techAdatok()
 
 void Duplex::pofaMozgas()
 {
-	sr[0][1] = -Ln;
-	sr[0][2] = -Hn;
-	sr[0][0] = ta1;
-	sr[0][3] = -L0*cb1;
-	sr[0][4] = L0*sb1;
-	sr[0][7] = sr[0][1] - Lf;
-	sr[0][ 8] = sr[0][ 2] + Hf;
-	sr[0][ 5] = sr[0][ 7] - Hm*ta1; 
-	sr[0][ 6]= sr[0][ 8] + Hm;
-	px = sr[0][ 1];
-	py = sr[0][ 2];
-	a1 = sqrt(sr[0][ 1] * sr[0][ 1] + sr[0][ 2] * sr[0][ 2]);
+	sr[0][1] = (-Ln);
+	sr[0][2] = (-Hn);
+	sr[0][0] = (ta1);
+	sr[0][3] = (-L0*cb1);
+	sr[0][4] = (L0*sb1);
+	sr[0][7] = (sr[0][1] - Lf);
+	sr[0][ 8] = (sr[0][ 2] + Hf);
+	sr[0][ 5] = (sr[0][ 7] - Hm*ta1);
+	sr[0][ 6]= (sr[0][ 8] + Hm);
+	px = (sr[0][ 1]);
+	py = (sr[0][ 2]);
+	a1 = (sqrt(sr[0][ 1] * sr[0][ 1] + sr[0][ 2] * sr[0][ 2]));
 	for (int i = 0; i < 73; i++)
 	{
-		sr[i][1] = sr[0][1] + exc*sin(5*i*rad);
-		sr[i][2] = sr[0][2] - exc*(1 - cos(5*i*rad));
-		sr[i][7]= sqrt(sr[i][ 1] * sr[i][ 1] + sr[i][ 2] * sr[i][ 2]);
-		de = atan(sr[i][2] / sr[i][1]);
-		if (de < 0)de = de + M_PI;
-		a2= (pm*pm - L0*L0 - sr[i][ 7] * sr[i][ 7]) / (-2 * L0*sr[i][ 7]);
-		ep = acos(a2);//megnézni, hogy jó-e?
-		ka = de - ep;
-		sr[i][3] = -L0*cos(ka);
-		sr[i][4] = -L0*sin(ka);
-		ka = atan((sr[i][ 1] - sr[i][ 3]) / (sr[i][ 4] - sr[i][ 2]));
-		sr[i][ 5] = sr[i][ 3] - pa*sin(sa - ka); sr[i][ 6] = sr[i][ 4] - pa*cos(sa - ka);
-		sr[i][ 7] = sr[i][ 1] - pf*sin(sf + ka); sr[i][ 8] = sr[i][ 2] + pf*cos(sf + ka);
-		sr[i][ 0] = (sr[i][ 7] - sr[i][ 5]) / (sr[i][ 6] - sr[i][ 8]);
+		sr[i][1] = (sr[0][1] + exc*sin(5*i*rad));
+		sr[i][2] = (sr[0][2] - exc*(1 - cos(5*i*rad)));
+		sr[i][7]= (sqrt(sr[i][ 1] * sr[i][ 1] + sr[i][ 2] * sr[i][ 2]));
+		de = (atan((sr[i][2] / sr[i][1])));
+		if (de < 0)de = (de + M_PI);
+		a2= ((pm*pm - L0*L0 - sr[i][ 7] * sr[i][ 7]) / (-2 * L0*sr[i][ 7]));
+		ep = (acos(a2));//megnézni, hogy jó-e?
+		ka = (de - ep);
+		sr[i][3] = (-L0*cos(ka));
+		sr[i][4] = (-L0*sin(ka));
+		ka = atan(((sr[i][ 1] - sr[i][ 3]) / (sr[i][ 4] - sr[i][ 2])));
+		sr[i][ 5] = (sr[i][ 3] - pa*sin((sa - ka))); sr[i][ 6] = sr[i][ 4] - pa*cos((sa - ka));
+		sr[i][ 7] = sr[i][ 1] - pf*sin((sf + ka)); sr[i][ 8] = sr[i][ 2] + pf*cos((sf + ka));
+		sr[i][ 0] = ((sr[i][ 7] - sr[i][ 5]) / (sr[i][ 6] - sr[i][ 8]));
 		pontok(i);
 	}
 
@@ -146,8 +156,8 @@ void Duplex::pontok(int i)
 {
 	for (int j = 0; j < 6; j++)
 	{
-		ar[i][ 2 * j - 1] = (sr[i][ 5] - sr[i][ 7])*(j - 1) / 4 + sr[i][ 7];
-		ar[i][ 2 * j] = (sr[i][ 6] - sr[i][ 8])*(j - 1) / 4 + sr[i][ 8];
+		ar[i][ 2 * j - 1] = ((sr[i][ 5] - sr[i][ 7])*(j - 1) / 4 + sr[i][ 7]);
+		ar[i][ 2 * j] = ((sr[i][ 6] - sr[i][ 8])*(j - 1) / 4 + sr[i][ 8]);
 	}
 }
 

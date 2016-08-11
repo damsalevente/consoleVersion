@@ -5,8 +5,9 @@ int main()
 	Duplex dup;
 	dup.alapAdatok();
 	dup.alapszamit();
+	dup.szamit();
 	dup.print();
-	int lala[10][2];
-	
+	dup.pofaMozgas();
+	dup.print();
 	return 0;
 }
