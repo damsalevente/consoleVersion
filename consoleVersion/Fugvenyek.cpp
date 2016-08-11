@@ -121,11 +121,34 @@ void Duplex::pofaMozgas()
 	px = sr[0][ 1];
 	py = sr[0][ 2];
 	a1 = sqrt(sr[0][ 1] * sr[0][ 1] + sr[0][ 2] * sr[0][ 2]);
-	for (int i = 0; i <= 72; i++)
+	for (int i = 0; i < 73; i++)
 	{
-
+		sr[i][1] = sr[0][1] + exc*sin(5*i*rad);
+		sr[i][2] = sr[0][2] - exc*(1 - cos(5*i*rad));
+		sr[i][7]= sqrt(sr[i][ 1] * sr[i][ 1] + sr[i][ 2] * sr[i][ 2]);
+		de = atan(sr[i][2] / sr[i][1]);
+		if (de < 0)de = de + M_PI;
+		a2= (pm*pm - L0*L0 - sr[i][ 7] * sr[i][ 7]) / (-2 * L0*sr[i][ 7]);
+		ep = acos(a2);//megnézni, hogy jó-e?
+		ka = de - ep;
+		sr[i][3] = -L0*cos(ka);
+		sr[i][4] = -L0*sin(ka);
+		ka = atan((sr[i][ 1] - sr[i][ 3]) / (sr[i][ 4] - sr[i][ 2]));
+		sr[i][ 5] = sr[i][ 3] - pa*sin(sa - ka); sr[i][ 6] = sr[i][ 4] - pa*cos(sa - ka);
+		sr[i][ 7] = sr[i][ 1] - pf*sin(sf + ka); sr[i][ 8] = sr[i][ 2] + pf*cos(sf + ka);
+		sr[i][ 0] = (sr[i][ 7] - sr[i][ 5]) / (sr[i][ 6] - sr[i][ 8]);
+		pontok(i);
 	}
 
+}
+
+void Duplex::pontok(int i)
+{
+	for (int j = 0; j < 6; j++)
+	{
+		ar[i][ 2 * j - 1] = (sr[i][ 5] - sr[i][ 7])*(j - 1) / 4 + sr[i][ 7];
+		ar[i][ 2 * j] = (sr[i][ 6] - sr[i][ 8])*(j - 1) / 4 + sr[i][ 8];
+	}
 }
 
 

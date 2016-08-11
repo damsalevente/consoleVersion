@@ -70,7 +70,11 @@ public:
 	void maxLoket();
 	//Technologiai adatok 
 	void techAdatok();
+	// jó sok pontot kiszámol jó sokáig, és utána feltölti az sr tömböt 
 	void pofaMozgas();
+	//pontok a pofamozgáshoz
+	// ar tömböt rakja össze
+	void pontok(int i);
 
 
 };
